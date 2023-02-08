@@ -2,8 +2,20 @@ import axios from 'axios';
 
 const API = axios.create({ baseURL:"http://localhost:5000"})
 
+API.interceptors.request.use((req) => {
+    if(localStorage.getItem('Profile')){
+        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('Profile')).token}`
+    }
+    return req;
+})
+
 export const logIn =  (authData) => API.post('/user/login',authData,{headers:{"Content-Type" : "application/json"}})
 export const signUp =  (authData) => API.post('/user/signup',authData,{headers:{"Content-Type" : "application/json"}})
 
 export const postQuestion = (questionData) => API.post('/questions/Ask', questionData)
 export const getAllQuestions = () => API.get('/questions/get');
+
+export const postAnswer = (id, noOfAnswers,answerBody, userAnswered) => API.patch(`/answer/post/${id}`,{
+    noOfAnswers,answerBody, userAnswered},{headers:{"Content-Type" : "application/json"}})
+
+export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`,{headers:{"Content-Type" : "application/json"}}) 

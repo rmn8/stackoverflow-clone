@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {/* useEffect, useState */} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector} from 'react-redux'
 import './HomeMainbar.css'
@@ -11,7 +11,16 @@ const HomeMainbar = () => {
     const navigate = useNavigate()
 
     const questionsList = useSelector((state) => (state.questionsReducer))
+    
+    // const selectorData = useSelector((state) => (state.questionsReducer))
+    // const [questionsList, setQuestionsList] = useState([]);
     console.log(questionsList)
+    console.log(Array.isArray(questionsList.data))
+
+    // useEffect(()=>{
+    //     setQuestionsList(selectorData)
+    // },[selectorData])
+
     // var questionsList = [{ 
     //     _id: 1,
     //     upVotes: 3,
@@ -84,12 +93,14 @@ const HomeMainbar = () => {
             </div>
             <div>
                 {
-                    questionsList === undefined ?
-                    <h1>No questions found</h1> :
+                    (questionsList === undefined || !Array.isArray(questionsList.data)) ?
+                    (<h1>No questions found</h1>) :
+                    (
                     <>
-                        <p>{ questionsList.data.length } questions</p>
+                        <p>{ questionsList.data?.length } questions</p>
                         <QuestionList questionsList={questionsList.data} />
                     </>
+                    )
                 }
             </div>
         </div>
