@@ -1,4 +1,4 @@
-import React, { useState}  from 'react'
+import React, { useRef, useState}  from 'react'
 // import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import upvote from '../../assets/sort-up.svg'
@@ -68,13 +68,15 @@ const QuestionDetails = () => {
 
     const {id} = useParams()
     const questionsList = useSelector((state) => (state.questionsReducer))
-    console.log(questionsList)
+    // console.log(questionsList)
 
     const [Answer, setAnswer] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const User = useSelector((state) => (state.currentUserReducer))
     // const location = useLocation()
+
+    const myForm = useRef(null)
 
     const handlePostAnswer = (e, answerLength) =>{
         e.preventDefault()
@@ -85,8 +87,8 @@ const QuestionDetails = () => {
             if(Answer === ''){
                 alert('Enter an answer before submitting')
             } else{
+                myForm.current.reset(); 
                 dispatch(postAnswer({ id, noOfAnswers: answerLength + 1, answerBody: Answer, userAnswered: User.result.name }))
-                setAnswer("")
             }
         }
     }
@@ -163,7 +165,7 @@ const QuestionDetails = () => {
                                 }
                                 <section className='post-ans-container'>
                                     <h3>Your Answer</h3>
-                                    <form onSubmit={ (e) => { handlePostAnswer(e, question.answer.length) }}>
+                                    <form ref={myForm} onSubmit={ (e) => { handlePostAnswer(e, question.answer.length) }}>
                                         <textarea name="" id="" cols="30" rows="10" onChange={e => setAnswer(e.target.value)}></textarea><br />
                                         <input type="Submit" className='post-ans-btn' value='Post Your Answer'/>
                                     </form>

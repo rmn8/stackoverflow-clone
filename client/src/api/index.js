@@ -19,3 +19,5 @@ export const postAnswer = (id, noOfAnswers,answerBody, userAnswered) => API.patc
     noOfAnswers,answerBody, userAnswered},{headers:{"Content-Type" : "application/json"}})
 
 export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`,{headers:{"Content-Type" : "application/json"}}) 
+
+export const deleteAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/delete/${id}`, { answerId, noOfAnswers},{headers:{"Content-Type" : "application/json"}})
