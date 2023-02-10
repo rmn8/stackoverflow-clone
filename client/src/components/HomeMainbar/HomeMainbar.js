@@ -14,8 +14,8 @@ const HomeMainbar = () => {
     
     // const selectorData = useSelector((state) => (state.questionsReducer))
     // const [questionsList, setQuestionsList] = useState([]);
-    console.log(questionsList)
-    console.log(Array.isArray(questionsList.data))
+    // console.log(questionsList)
+    // console.log(Array.isArray(questionsList.data))
 
     // useEffect(()=>{
     //     setQuestionsList(selectorData)

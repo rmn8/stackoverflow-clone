@@ -38,6 +38,10 @@ export const login = async (req, res) => {
             return res.status(400).json({message : "Invalid credentials"})
         }
         const token = jwt.sign({ email: existinguser.email, id:existinguser._id}, process.env.JWT_SECRET , { expiresIn: '1h'});
+
+        //expiry time is set in secconds. Multiply by 1000 to convert to milliseconds 
+        // (new Date.time() gives current time in milliseconds)
+        
         res.status(200).json({ result: existinguser, token })
     } catch (error)  {
         res.status(500).json("Something went worng...")

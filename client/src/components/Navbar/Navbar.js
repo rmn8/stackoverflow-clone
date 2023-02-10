@@ -18,6 +18,9 @@ const Navbar = () => {
         const token = User?.token 
         if(token){
             const decodedToken = decode(token)
+            // console.log("decoded token is: ", decodedToken)
+            // console.log(`Token wil expire on: ${decodedToken.exp * 1000}`)
+            // console.log(`Current time is ${new Date().getTime()}`)
             if(decodedToken.exp * 1000 < new Date().getTime()){
                 handleLogout()
             }

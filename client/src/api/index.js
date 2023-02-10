@@ -23,3 +23,5 @@ export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`,{head
 export const deleteAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/delete/${id}`, { answerId, noOfAnswers},{headers:{"Content-Type" : "application/json"}})
 
 export const voteQuestion = (id, value ) => API.patch(`/questions/vote/${id}`, { value })
+
+export const getAllUsers = () => API.get('/user/getAllUsers');
