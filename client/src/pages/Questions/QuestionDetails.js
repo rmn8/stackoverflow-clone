@@ -3,7 +3,7 @@ import React, { useRef, useState}  from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import upvote from '../../assets/sort-up.svg'
 import downvote from '../../assets/sort-down.svg'
-import Avatar from '../../components/Avatar'
+import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import './QuestionDetails.css'
 import { useSelector, useDispatch } from 'react-redux'
@@ -94,9 +94,7 @@ const QuestionDetails = () => {
     }
 
     const handleShare = () => {
-        const url = window.location.href;//'http://localhost:3000'
-        // copy(url+location.pathname)
-        // alert('Copied url : '+url+location.pathname)
+        const url = window.location.href;
         copy(url);
         alert('Copied url : '+url)
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import Avatar from '../../components/Avatar'
+import Avatar from '../../components/Avatar/Avatar'
 import moment from 'moment'
 import { deleteAnswer } from '../../actions/question'
 
@@ -31,7 +31,7 @@ const DisplayAnswer = ({question ,handleShare}) => {
 
                         <div>
                             <p>answered {moment(ans.answeredOn).fromNow()}</p>
-                            <Link to={`/User/${ans.userId}`} className="user-link" style={{color:"# 0086d8"}}>
+                            <Link to={`/Users/${ans.userId}`} className="user-link" style={{color:"# 0086d8"}}>
                                 <Avatar backgroundColor="green" px="8px" py="5px">
                                     {ans.userAnswered.charAt(0).toUpperCase()}
                                 </Avatar>

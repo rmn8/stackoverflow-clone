@@ -30,10 +30,10 @@ app.use('/answer', answerRoutes)
 
 const PORT = process.env.PORT || 5000
 
-const CONNECTION_URL = "mongodb://127.0.0.1:27017/stack-overflow-clone";
+const CONNECTION_URL = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', false);
 mongoose.connect( CONNECTION_URL , {useNewUrlParser: true , useUnifiedTopology:true} )
         .then(()=> app.listen(PORT, ()=>{
-          console.log(`Server running on post: ${PORT}`)  
+          console.log(`Server running on port: ${PORT}`)  
         }))
         .catch((err)=> console.log(err.message))

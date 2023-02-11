@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-// require("dotenv").config();
 import * as dotenv from 'dotenv';
 dotenv.config();
 

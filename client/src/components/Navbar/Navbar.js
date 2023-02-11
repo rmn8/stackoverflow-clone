@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import search from '../../assets/search-solid.svg'
-import Avatar from '../../components/Avatar'
+import Avatar from '../../components/Avatar/Avatar'
 // import Button from '../../components/Button'
 import { useSelector, useDispatch } from 'react-redux'
 import './Navbar.css'
@@ -22,11 +22,16 @@ const Navbar = () => {
             // console.log(`Token wil expire on: ${decodedToken.exp * 1000}`)
             // console.log(`Current time is ${new Date().getTime()}`)
             if(decodedToken.exp * 1000 < new Date().getTime()){
-                handleLogout()
+                // handleLogout()
+                // react cribs about missing dependency of handleLogout
+                // broke dry rule here
+                dispatch({ type: 'LOGOUT'});
+                navigate('/')
+                dispatch(setCurrentUser(null))
             }
         }
         dispatch(setCurrentUser( JSON.parse(localStorage.getItem('Profile'))))
-    },[User?.token,dispatch])
+    },[User?.token,dispatch,navigate])
 
     const handleLogout = () => {
         dispatch({ type: 'LOGOUT'});
@@ -55,7 +60,7 @@ const Navbar = () => {
             <>
                 
                     <Avatar backgroundColor='#009dff' px="5px" py="7px" borderRadius="50%" color="white">
-                    <Link to='/User' className='' style={{color:"white", textDecoration:"none"}}>
+                    <Link to={`/Users/${User?.result?._id}`} style={{color:"white", textDecoration:'none'}}>
                         {Array.from(User.result.name)[0].toUpperCase()}
                         </Link>
                     </Avatar>

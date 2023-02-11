@@ -24,6 +24,7 @@ export const updateProfile = async (req, res) => {
     }
 
     try {
+        // { new: true } will return updated profile
         const updatedProfile = await users.findByIdAndUpdate( _id, { $set: { 'name': name, 'about': about, 'tags': tags }}, { new: true } )
         res.status(200).json(updatedProfile)
     } catch (error) {
