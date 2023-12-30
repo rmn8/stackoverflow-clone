@@ -17,9 +17,9 @@ services:
     command: npm start
     restart: always
     expose:
-      - 3001
+      - 5000
     ports:
-      - 3001:3001
+      - 5000:5000
     links:
       - mongo_db
 
