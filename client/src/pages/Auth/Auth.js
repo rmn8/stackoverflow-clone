@@ -92,6 +92,8 @@ const Auth = () => {
 
                     <label htmlFor='email'>
                         <h4>Email</h4>
+                        <h1>asas</h1> 
+
                         <input type="email" name="email" id="email" onChange={(e) => { setEmail(e.target.value) }} />
                     </label>
                     <label htmlFor='password'>
