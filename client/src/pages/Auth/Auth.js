@@ -91,7 +91,7 @@ const Auth = () => {
                     }
 
                     <label htmlFor='email'>
-                        <h4>{process.env.REACT_APP_API_URL}</h4>
+                        <h4>Email</h4>
                       
                         <input type="email" name="email" id="email" onChange={(e) => { setEmail(e.target.value) }} />
                     </label>
